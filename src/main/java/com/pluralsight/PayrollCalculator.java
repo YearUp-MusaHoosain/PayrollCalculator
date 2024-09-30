@@ -6,7 +6,7 @@ public class PayrollCalculator {
 
     static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         String fullName = promptForName("What is your name?: ");
         double hoursWorked = promptForNumbers("How many hours did you work?: ");
         double payRate = promptForNumbers("What is your pay rate?: ");
@@ -14,19 +14,25 @@ public class PayrollCalculator {
         System.out.println(fullName + ", " + "Your gross pay is " + totalGrossPay);
     }
 
-    public static String promptForName (String prompt){
+    public static String promptForName(String prompt) {
         System.out.print(prompt);
         String name = sc.nextLine();
         return name;
     }
 
-    public static double promptForNumbers (String prompt){
+    public static double promptForNumbers(String prompt) {
         System.out.print(prompt);
         double hours = sc.nextDouble();
         return hours;
     }
 
-    public static double grossPay (double a, double b){
-        return a * b;
+    public static double grossPay(double hours, double rate) {
+        double grosspay = 0;
+        if (hours <= 40) {
+            grosspay = hours * rate;
+        } else if (hours > 40) {
+            grosspay = (rate * 1.5) * (hours - 40) + 40 * rate;
+        }
+        return grosspay;
     }
 }
